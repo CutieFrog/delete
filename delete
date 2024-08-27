@@ -1,0 +1,84 @@
+import turtle
+
+# Створення екрану
+screen = turtle.Screen()
+screen.bgcolor("black")
+
+# Налаштування turtle
+pen = turtle.Turtle()
+pen.shape("turtle")
+pen.speed(10)
+
+# Функція для малювання кола
+def draw_circle(color, radius, x, y):
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+    pen.color(color)
+    pen.begin_fill()
+    pen.circle(radius)
+    pen.end_fill()
+
+# Малювання зірок
+def draw_star(size, x, y):
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+    pen.color("white")
+    for i in range(5):
+        pen.forward(size)
+        pen.right(144)
+
+# Малювання ракети
+def draw_rocket():
+    pen.penup()
+    pen.goto(-50, -150)
+    pen.pendown()
+    
+    # Тіло ракети
+    pen.color("grey")
+    pen.begin_fill()
+    pen.forward(100)
+    pen.left(90)
+    pen.forward(200)
+    pen.left(90)
+    pen.forward(100)
+    pen.left(90)
+    pen.forward(200)
+    pen.end_fill()
+    
+    # Носова частина ракети
+    pen.left(90)
+    pen.forward(50)
+    pen.color("red")
+    pen.begin_fill()
+    pen.goto(0, 100)
+    pen.goto(50, -150)
+    pen.end_fill()
+
+    # Ліве крило
+    pen.color("blue")
+    pen.begin_fill()
+    pen.goto(-50, -150)
+    pen.goto(-100, -250)
+    pen.goto(0, -150)
+    pen.end_fill()
+
+    # Праве крило
+    pen.penup()
+    pen.goto(50, -150)
+    pen.pendown()
+    pen.begin_fill()
+    pen.goto(100, -250)
+    pen.goto(50, -150)
+    pen.end_fill()
+
+# Викликаємо функції
+draw_circle("yellow", 50, 100, 200)  # Сонце
+draw_star(20, -200, 250)  # Зірка 1
+draw_star(15, 100, 300)   # Зірка 2
+draw_star(10, -150, -200) # Зірка 3
+draw_rocket()  # Ракета
+
+# Закрити вікно при кліку
+screen.exitonclick()

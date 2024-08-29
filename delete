@@ -2,7 +2,7 @@ import turtle
 
 # Створення екрану
 screen = turtle.Screen()
-screen.bgcolor("black")
+screen.bgcolor("lightblue")
 
 # Налаштування turtle
 pen = turtle.Turtle()
@@ -19,66 +19,63 @@ def draw_circle(color, radius, x, y):
     pen.circle(radius)
     pen.end_fill()
 
-# Малювання зірок
-def draw_star(size, x, y):
+# Функція для малювання прямокутника
+def draw_rectangle(color, width, height, x, y):
     pen.penup()
     pen.goto(x, y)
     pen.pendown()
-    pen.color("white")
-    for i in range(5):
-        pen.forward(size)
-        pen.right(144)
+    pen.color(color)
+    pen.begin_fill()
+    for _ in range(2):
+        pen.forward(width)
+        pen.left(90)
+        pen.forward(height)
+        pen.left(90)
+    pen.end_fill()
 
-# Малювання ракети
-def draw_rocket():
-    pen.penup()
-    pen.goto(-50, -150)
-    pen.pendown()
+# Малювання голови собаки
+def draw_dog():
+    # Голова
+    draw_circle("brown", 50, 0, -50)
     
-    # Тіло ракети
-    pen.color("grey")
-    pen.begin_fill()
-    pen.forward(100)
-    pen.left(90)
-    pen.forward(200)
-    pen.left(90)
-    pen.forward(100)
-    pen.left(90)
-    pen.forward(200)
-    pen.end_fill()
+    # Вуха
+    draw_circle("darkbrown", 20, -35, 15)  # Ліве вухо
+    draw_circle("darkbrown", 20, 35, 15)   # Праве вухо
     
-    # Носова частина ракети
-    pen.left(90)
-    pen.forward(50)
-    pen.color("red")
-    pen.begin_fill()
-    pen.goto(0, 100)
-    pen.goto(50, -150)
-    pen.end_fill()
-
-    # Ліве крило
-    pen.color("blue")
-    pen.begin_fill()
-    pen.goto(-50, -150)
-    pen.goto(-100, -250)
-    pen.goto(0, -150)
-    pen.end_fill()
-
-    # Праве крило
+    # Очі
+    draw_circle("white", 15, -20, 0)  # Ліве око
+    draw_circle("white", 15, 20, 0)   # Праве око
+    draw_circle("black", 7, -20, 0)   # Лівий зіниця
+    draw_circle("black", 7, 20, 0)    # Правий зіниця
+    
+    # Ніс
+    draw_circle("black", 10, 0, -30)
+    
+    # Рот
     pen.penup()
-    pen.goto(50, -150)
+    pen.goto(-20, -50)
     pen.pendown()
-    pen.begin_fill()
-    pen.goto(100, -250)
-    pen.goto(50, -150)
-    pen.end_fill()
+    pen.right(90)
+    pen.circle(20, 180)  # Малюємо дугу
 
-# Викликаємо функції
-draw_circle("yellow", 50, 100, 200)  # Сонце
-draw_star(20, -200, 250)  # Зірка 1
-draw_star(15, 100, 300)   # Зірка 2
-draw_star(10, -150, -200) # Зірка 3
-draw_rocket()  # Ракета
+    # Тіло
+    draw_rectangle("brown", 100, 150, -50, -200)
+
+    # Лапи
+    draw_rectangle("brown", 20, 50, -50, -250)  # Ліва передня лапа
+    draw_rectangle("brown", 20, 50, 30, -250)   # Права передня лапа
+    draw_rectangle("brown", 20, 50, -50, -350)  # Ліва задня лапа
+    draw_rectangle("brown", 20, 50, 30, -350)   # Права задня лапа
+
+    # Хвіст
+    pen.penup()
+    pen.goto(50, -200)
+    pen.pendown()
+    pen.right(90)
+    pen.circle(40, 180)  # Хвіст у вигляді дуги
+
+# Викликаємо функцію для малювання собаки
+draw_dog()
 
 # Закрити вікно при кліку
 screen.exitonclick()

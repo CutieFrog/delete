@@ -2,7 +2,7 @@ import turtle
 
 # Створення екрану
 screen = turtle.Screen()
-screen.bgcolor("lightblue")
+screen.bgcolor("lightyellow")
 
 # Налаштування turtle
 pen = turtle.Turtle()
@@ -19,28 +19,26 @@ def draw_circle(color, radius, x, y):
     pen.circle(radius)
     pen.end_fill()
 
-# Функція для малювання прямокутника
-def draw_rectangle(color, width, height, x, y):
+# Функція для малювання трикутника
+def draw_triangle(color, size, x, y):
     pen.penup()
     pen.goto(x, y)
     pen.pendown()
     pen.color(color)
     pen.begin_fill()
-    for _ in range(2):
-        pen.forward(width)
-        pen.left(90)
-        pen.forward(height)
-        pen.left(90)
+    for _ in range(3):
+        pen.forward(size)
+        pen.left(120)
     pen.end_fill()
 
-# Малювання голови собаки
-def draw_dog():
+# Малювання котика
+def draw_cat():
     # Голова
-    draw_circle("brown", 50, 0, -50)
+    draw_circle("gray", 50, 0, -50)
     
     # Вуха
-    draw_circle("darkbrown", 20, -35, 15)  # Ліве вухо
-    draw_circle("darkbrown", 20, 35, 15)   # Праве вухо
+    draw_triangle("gray", 50, -50, 0)   # Ліве вухо
+    draw_triangle("gray", 50, 0, 0)     # Праве вухо
     
     # Очі
     draw_circle("white", 15, -20, 0)  # Ліве око
@@ -49,33 +47,42 @@ def draw_dog():
     draw_circle("black", 7, 20, 0)    # Правий зіниця
     
     # Ніс
-    draw_circle("black", 10, 0, -30)
+    draw_circle("pink", 10, 0, -30)
     
-    # Рот
+    # Вуса
     pen.penup()
-    pen.goto(-20, -50)
+    pen.goto(-20, -40)
     pen.pendown()
-    pen.right(90)
-    pen.circle(20, 180)  # Малюємо дугу
+    pen.goto(-50, -40)  # Ліві вуса
+    pen.penup()
+    pen.goto(20, -40)
+    pen.pendown()
+    pen.goto(50, -40)   # Праві вуса
+    pen.penup()
+    pen.goto(-20, -45)
+    pen.pendown()
+    pen.goto(-50, -50)  # Ліві нижні вуса
+    pen.penup()
+    pen.goto(20, -45)
+    pen.pendown()
+    pen.goto(50, -50)   # Праві нижні вуса
 
     # Тіло
-    draw_rectangle("brown", 100, 150, -50, -200)
+    draw_circle("gray", 70, 0, -150)
 
     # Лапи
-    draw_rectangle("brown", 20, 50, -50, -250)  # Ліва передня лапа
-    draw_rectangle("brown", 20, 50, 30, -250)   # Права передня лапа
-    draw_rectangle("brown", 20, 50, -50, -350)  # Ліва задня лапа
-    draw_rectangle("brown", 20, 50, 30, -350)   # Права задня лапа
+    draw_circle("gray", 30, -50, -200)  # Ліва лапа
+    draw_circle("gray", 30, 50, -200)   # Права лапа
 
     # Хвіст
     pen.penup()
-    pen.goto(50, -200)
+    pen.goto(50, -100)
     pen.pendown()
     pen.right(90)
-    pen.circle(40, 180)  # Хвіст у вигляді дуги
+    pen.circle(50, 180)  # Хвіст у вигляді дуги
 
-# Викликаємо функцію для малювання собаки
-draw_dog()
+# Викликаємо функцію для малювання котика
+draw_cat()
 
 # Закрити вікно при кліку
 screen.exitonclick()
